@@ -40,7 +40,7 @@
             TextWrapping="WrapWithOverflow"
             TextTrimming="WordEllipsis"
             TextAlignment="Center"
-            VerticalAlignment="Center" FontSize="15" Foreground="White"
+            VerticalAlignment="Center" FontSize="15" Foreground="{DynamicResource TextForegroundBrush}"
             d:Text="The document has been modified. Do you want to save changes?" />
     </DockPanel>
 </dialogs1:PixiEditorPopup>

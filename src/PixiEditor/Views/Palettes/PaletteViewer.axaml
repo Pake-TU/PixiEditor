@@ -65,7 +65,7 @@
                            BorderThickness="2" />
                 <Grid IsVisible="False" Background="{DynamicResource ThemeControlHighlightBrush}" Opacity="0.7"
                       Grid.Row="2" Name="dragDropGrid">
-                    <TextBlock TextWrapping="Wrap" ui:Translator.Key="DROP_PALETTE" Foreground="White" FontSize="32"
+                    <TextBlock TextWrapping="Wrap" ui:Translator.Key="DROP_PALETTE" Foreground="{DynamicResource TextForegroundBrush}" FontSize="32"
                                HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Grid>
                 <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
@@ -111,13 +111,13 @@
                                     </Interaction.Behaviors>
                                     <palettes:PaletteColorControl.ContextMenu>
                                         <ContextMenu>
-                                            <MenuItem ui:Translator.Key="CHOOSE" Foreground="White"
+                                            <MenuItem ui:Translator.Key="CHOOSE" Foreground="{DynamicResource TextForegroundBrush}"
                                                       Click="MenuItem_OnClick"
                                                       CommandParameter="{Binding}" />
-                                            <MenuItem ui:Translator.Key="REMOVE" Foreground="White"
+                                            <MenuItem ui:Translator.Key="REMOVE" Foreground="{DynamicResource TextForegroundBrush}"
                                                       Click="RemoveColorMenuItem_OnClick"
                                                       CommandParameter="{Binding}" />
-                                            <MenuItem ui:Translator.Key="REPLACE" Foreground="White"
+                                            <MenuItem ui:Translator.Key="REPLACE" Foreground="{DynamicResource TextForegroundBrush}"
                                                       CommandParameter="{Binding}"
                                                       Click="ReplaceColor_OnClick" />
                                         </ContextMenu>
@@ -168,13 +168,13 @@
                                 </Interaction.Behaviors>
                                 <palettes:PaletteColorControl.ContextMenu>
                                     <ContextMenu>
-                                        <MenuItem ui:Translator.Key="CHOOSE" Foreground="White"
+                                        <MenuItem ui:Translator.Key="CHOOSE" Foreground="{DynamicResource TextForegroundBrush}"
                                                   Click="MenuItem_OnClick"
                                                   CommandParameter="{Binding}" />
-                                        <MenuItem ui:Translator.Key="REMOVE" Foreground="White"
+                                        <MenuItem ui:Translator.Key="REMOVE" Foreground="{DynamicResource TextForegroundBrush}"
                                                   Click="RemoveColorMenuItem_OnClick"
                                                   CommandParameter="{Binding}" />
-                                        <MenuItem ui:Translator.Key="REPLACE" Foreground="White"
+                                        <MenuItem ui:Translator.Key="REPLACE" Foreground="{DynamicResource TextForegroundBrush}"
                                                   CommandParameter="{Binding}"
                                                   Click="ReplaceColor_OnClick" />
                                     </ContextMenu>

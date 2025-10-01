@@ -21,7 +21,7 @@
 
     <Window.Styles>
         <Style Selector="TextBlock">
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{DynamicResource TextForegroundBrush}" />
             <Setter Property="FontSize" Value="16" />
         </Style>
     </Window.Styles>

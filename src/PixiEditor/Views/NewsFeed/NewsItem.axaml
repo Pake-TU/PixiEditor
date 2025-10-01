@@ -38,7 +38,7 @@
                 <Border IsVisible="{Binding ElementName=newsItem, Path=News.IsNew}"
                         Margin="2.5 2.5" Background="{DynamicResource ThemeAccentBrush}" HorizontalAlignment="Left"
                         Padding="5 2.5" CornerRadius="5">
-                    <TextBlock Text="New!" Foreground="White" FontSize="12" FontStyle="Italic" />
+                    <TextBlock Text="New!" Foreground="{DynamicResource TextForegroundBrush}" FontSize="12" FontStyle="Italic" />
                 </Border>
                 <TextBlock Margin="8 5" HorizontalAlignment="Right" FontSize="12" Foreground="LightGray"
                            Text="{Binding ElementName=newsItem, Path=News.Date, StringFormat=d}" />
