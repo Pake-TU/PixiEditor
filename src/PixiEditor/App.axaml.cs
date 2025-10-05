@@ -1,7 +1,8 @@
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using PixiEditor.Initialization;
+using Avalonia.Styling;  //added for the lightmode
 
 namespace PixiEditor;
 
@@ -10,6 +11,11 @@ public partial class App : Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+    }
+    // Helps telling Avalonia which theme-mode to use
+    public void SetTheme(bool useDarkTheme)
+    {
+        Application.Current.RequestedThemeVariant = useDarkTheme ? ThemeVariant.Dark : ThemeVariant.Light;
     }
 
     public override void OnFrameworkInitializationCompleted()

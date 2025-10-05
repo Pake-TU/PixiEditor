@@ -1,4 +1,4 @@
-using AsyncImageLoader.Loaders;
+﻿using AsyncImageLoader.Loaders;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -28,6 +28,10 @@ using PixiEditor.ViewModels.SubViewModels;
 using PixiEditor.Views.Main;
 using PixiEditor.Views.Rendering;
 using ViewModels_ViewModelMain = PixiEditor.ViewModels.ViewModelMain;
+using Silk.NET.Vulkan;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace PixiEditor.Views;
 
@@ -65,20 +69,21 @@ internal partial class MainWindow : Window
         StartupPerformance.ReportToMainWindow();
 
         (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime).MainWindow = this;
-        
+
         extLoader = extensionLoader;
-        
-        AsyncImageLoader.ImageLoader.AsyncImageLoader = IOperatingSystem.Current.IsLinux ? new BaseWebImageLoader() :
-            new DiskCachedWebImageLoader(Path.Combine(Paths.TempFilesPath, "ImageCache"));
+
+        AsyncImageLoader.ImageLoader.AsyncImageLoader = IOperatingSystem.Current.IsLinux
+            ? new BaseWebImageLoader()
+            : new DiskCachedWebImageLoader(Path.Combine(Paths.TempFilesPath, "ImageCache"));
 
         services = ClassicDesktopEntry.Active.Services;
-        
+
         preferences = services.GetRequiredService<IPreferences>();
         platform = services.GetRequiredService<IPlatform>();
         DataContext = services.GetRequiredService<ViewModels_ViewModelMain>();
 
         DataContext.AttachToWindow(this);
-        
+
         StartupPerformance.ReportToMainViewModel();
 
         try
@@ -94,7 +99,6 @@ internal partial class MainWindow : Window
         InitializeComponent();
     }
 
-
     public static MainWindow CreateWithRecoveredDocuments(CrashReport report, out bool showMissingFilesDialog)
     {
         if (!report.TryRecoverDocuments(out var documents, out var sessionInfo))
@@ -105,14 +109,10 @@ internal partial class MainWindow : Window
 
         var window = GetMainWindow(sessionInfo?.AnalyticsSessionId);
         var fileVM = window.services.GetRequiredService<FileViewModel>();
-
-        var i = 0;
-
         fileVM.OpenFromReport(report, out showMissingFilesDialog);
-
         return window;
 
-        MainWindow GetMainWindow(Guid? analyticsSession)
+        static MainWindow GetMainWindow(Guid? analyticsSession)
         {
             try
             {
@@ -131,16 +131,15 @@ internal partial class MainWindow : Window
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
-        
+
         titleBar = this.FindDescendantOfType<MainTitleBar>(true);
         if (System.OperatingSystem.IsLinux())
         {
             titleBar.PointerPressed += OnTitleBarPressed;
-            
+
             PointerMoved += UpdateResizeCursor;
             AddHandler(PointerPressedEvent, Pressed, RoutingStrategies.Tunnel | RoutingStrategies.Bubble);
         }
-        
 
         LoadingWindow.Instance?.SafeClose();
         Activate();
@@ -150,11 +149,9 @@ internal partial class MainWindow : Window
 
     private void UpdateResizeCursor(object? sender, PointerEventArgs e)
     {
-        if(WindowState != WindowState.Normal)
-        {
+        if (WindowState != WindowState.Normal)
             return;
-        }
-        
+
         Cursor = new Cursor(WindowUtility.SetResizeCursor(e, this, new Thickness(8)));
     }
 
@@ -163,8 +160,8 @@ internal partial class MainWindow : Window
         if (WindowState == WindowState.Normal && e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
         {
             var direction = WindowUtility.GetResizeDirection(e.GetPosition(this), this, new Thickness(8));
-            if(direction == null) return;
-            
+            if (direction == null) return;
+
             BeginResizeDrag(direction.Value, e);
         }
     }
@@ -175,7 +172,7 @@ internal partial class MainWindow : Window
         bool sourceIsMenuItem = e.Source is Control ctrl && ctrl.GetLogicalParent() is MenuItem;
         if (withinTitleBar && !sourceIsMenuItem && e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
         {
-            if(e.ClickCount == 2)
+            if (e.ClickCount == 2)
             {
                 WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
             }
@@ -206,6 +203,25 @@ internal partial class MainWindow : Window
         }
 
         base.OnClosing(e);
+    }
+    /*
+    private void ThemeToggle(object? sender, RoutedEventArgs e)
+    {
+        if (sender is ToggleButton toggle)
+        {
+            bool isDark = toggle.IsChecked.GetValueOrDefault(true);
+            ((App)Application.Current).SetTheme(isDark);
+        }
+    }
+    */
+    // Simple menu click theme toggle
+    private void ThemeToggle(object? sender, RoutedEventArgs e)
+    {
+        var app = (App)Application.Current;  // Works like super i guess
+
+        // Flip between dark and light
+        bool isCurrentlyDark = app.RequestedThemeVariant == Avalonia.Styling.ThemeVariant.Dark;
+        app.SetTheme(!isCurrentlyDark);
     }
 
     private void MainWindow_Initialized(object? sender, EventArgs e)

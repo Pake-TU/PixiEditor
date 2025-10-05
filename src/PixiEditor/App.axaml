@@ -7,10 +7,12 @@
              x:Class="PixiEditor.App"
              Name="PixiEditor"
              RequestedThemeVariant="Dark">
-    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
     <Application.DataTemplates>
         <avaloniaUi:ViewLocator />
     </Application.DataTemplates>
+
+    <!-- === Styles for controls === -->
     <Application.Styles>
         <themes:PixiEditorTheme />
         <avalonia:PixiDockSimpleTheme />
@@ -21,12 +23,24 @@
         <StyleInclude Source="/Styles/PixiEditor.Layers.axaml" />
         <StyleInclude Source="/Styles/PixiEditorPopupTemplate.axaml" />
         <StyleInclude Source="/Styles/Buttons/CaptionButtonsStyle.axaml" />
+
+        <!-- Menu icon style (top menu only) -->
+        <Style Selector="Menu > TextBlock.icon">
+            <Setter Property="Foreground" Value="{DynamicResource TopMenuIconColor}" />
+            <Setter Property="FontFamily" Value="resm:PixiEditor.Resources.Fonts.PixiPerfectIcons.ttf?assembly=PixiEditor"/>
+        </Style>
     </Application.Styles>
+
+    <!-- === Resources === -->
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="/Styles/Templates/ListSwitchButton.axaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- Top menu icon color -->
+            <SolidColorBrush x:Key="TopMenuIconColor" Color="#FF5733"/>
         </ResourceDictionary>
     </Application.Resources>
+
 </Application>

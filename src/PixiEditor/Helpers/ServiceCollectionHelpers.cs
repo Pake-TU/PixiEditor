@@ -197,6 +197,7 @@ internal static class ServiceCollectionHelpers
             .AddSingleton<MenuItemBuilder, OpenDockablesMenuBuilder>()
             .AddSingleton<MenuItemBuilder, ToggleGridLinesMenuBuilder>()
             .AddSingleton<MenuItemBuilder, ToggleSnappingMenuBuilder>()
+            .AddSingleton<MenuItemBuilder,ChangeThemeMenuBuilder>()
             .AddSingleton<MenuItemBuilder, ToggleHighResPreviewMenuBuilder>();
     }
 
