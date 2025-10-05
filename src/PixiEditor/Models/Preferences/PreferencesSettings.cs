@@ -5,6 +5,7 @@ using PixiEditor.Extensions.CommonApi.UserPreferences;
 using PixiEditor.Helpers;
 using PixiEditor.Models.Dialogs;
 using PixiEditor.UI.Common.Localization;
+using PixiEditor;
 
 namespace PixiEditor.Models.Preferences;
 
@@ -39,6 +40,7 @@ internal class PreferencesSettings : IPreferences
 
             IsLoaded = true;
         }
+        (App.Current as App)?.SetTheme();
     }
 
     public void UpdatePreference<T>(string name, T value)
