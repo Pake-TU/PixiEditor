@@ -55,4 +55,7 @@ public static class PreferencesConstants
 
     public const string DisablePreviews = "DisablePreviews";
     public const bool DisablePreviewsDefault = false;
+
+    public const string RequestedTheme = "RequestedTheme";
+    public const string RequestedThemeDefault = "Dark";
 }

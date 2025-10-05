@@ -1,4 +1,6 @@
-﻿namespace PixiEditor.Extensions.CommonApi.UserPreferences.Settings.PixiEditor;
+﻿using System.Net.NetworkInformation;
+
+namespace PixiEditor.Extensions.CommonApi.UserPreferences.Settings.PixiEditor;
 
 public static class PixiEditorSettings
 {
@@ -95,6 +97,9 @@ public static class PixiEditorSettings
 
         public static SyncedSetting<string> SecondaryBackgroundColor { get; } = SyncedSetting.NonOwned(PixiEditor,
             PreferencesConstants.SecondaryBackgroundColorDefault, PreferencesConstants.SecondaryBackgroundColor);
+
+        public static SyncedSetting<string> RequestedTheme { get; } = SyncedSetting.NonOwned(PixiEditor,
+            PreferencesConstants.RequestedThemeDefault, PreferencesConstants.RequestedTheme);
     }
 
     public static class Performance

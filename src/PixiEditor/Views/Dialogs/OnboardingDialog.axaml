@@ -98,7 +98,7 @@
                 </Style.Animations>
             </Style>
             <Style Selector="Border.foundersPanel">
-                <Setter Property="Background" Value="#212121" />
+                <Setter Property="Background" Value="{DynamicResource FoundersBundleForegroundBrush}" />
                 <Setter Property="Padding" Value="12" />
                 <Setter Property="CornerRadius" Value="8" />
                 <Setter Property="BorderBrush" Value="#B47AFF" />
@@ -126,7 +126,7 @@
                 <TextBlock Classes="h1"
                            Foreground="{DynamicResource ThemeForegroundBrush}"
                            ui:Translator.Key="ONBOARDING_TITLE" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Svg Path="/Images/PixiEditorLogoWithName.svg" Height="60" />
+                <Svg Path="{DynamicResource PixiEditorLogoWithNameColor}" Height="60" />
             </StackPanel>
             <TextBlock ui:Translator.Key="ONBOARDING_DESCRIPTION"
                        Classes="h5"
@@ -292,7 +292,7 @@
                                 Classes="foundersButton"
                                 Padding="8, 4" />
                     </StackPanel>
-                    <Svg VerticalAlignment="Center" Path="/Images/FoundersBundle.svg" Width="532" />
+                    <Svg VerticalAlignment="Center" Path="{DynamicResource FoundersBundleColor}" Width="532" />
                 </DockPanel>
             </Grid>
         </Border>

@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Platform;
 using PixiEditor.UI.Common.Rendering;
@@ -20,14 +21,24 @@ public static class PixiPerfectIconExtensions
     {
         if (string.IsNullOrEmpty(unicode)) return null;
 
-        return new IconImage(unicode, pixiPerfectFontFamily, size, Colors.White);
+        if (Application.Current.ActualThemeVariant == Avalonia.Styling.ThemeVariant.Dark)
+        {
+            return new IconImage(unicode, pixiPerfectFontFamily, size, Colors.White);
+        }
+
+        return new IconImage(unicode, pixiPerfectFontFamily, size, Colors.Black);
     }
 
     public static IImage ToIcon(string unicode, double size, double rotation)
     {
         if (string.IsNullOrEmpty(unicode)) return null;
 
-        return new IconImage(unicode, pixiPerfectFontFamily, size, Colors.White, rotation);
+        if (Application.Current.ActualThemeVariant == Avalonia.Styling.ThemeVariant.Dark)
+        {
+            return new IconImage(unicode, pixiPerfectFontFamily, size, Colors.White, rotation);
+        }
+
+        return new IconImage(unicode, pixiPerfectFontFamily, size, Colors.Black, rotation);
     }
 
     public static string? TryGetByName(string? icon)

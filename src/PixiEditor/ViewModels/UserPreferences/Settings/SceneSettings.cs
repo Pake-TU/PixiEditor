@@ -1,5 +1,7 @@
-﻿using System.Windows.Input;
+﻿using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using Avalonia.Media;
+using Avalonia.Styling;
 using CommunityToolkit.Mvvm.Input;
 using Drawie.Numerics;
 using PixiEditor.Extensions.CommonApi.UserPreferences;
@@ -64,6 +66,27 @@ internal class SceneSettings : SettingsGroup
     }
 
     public ICommand ResetBackgroundCommand { get; }
+
+    private string requestedTheme = GetPreference(PreferencesConstants.RequestedTheme, PreferencesConstants.RequestedThemeDefault);
+
+    private ThemeVariant convertThemeName(string requestedTheme)
+    {
+        ThemeVariant variant = requestedTheme switch
+        {
+            "Dark" => ThemeVariant.Dark,
+            "Light" => ThemeVariant.Light,
+            "Default" => ThemeVariant.Default,
+            _ => ThemeVariant.Default
+        };
+        return variant;
+    }
+
+    public string RequestedTheme
+    {
+        get => requestedTheme;
+        //set => App.Current.RequestedThemeVariant = convertThemeName(requestedTheme);
+        set => RaiseAndUpdatePreference(PixiEditorSettings.Scene.RequestedTheme, value);
+    }
 
     public SceneSettings()
     {
