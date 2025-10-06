@@ -33,7 +33,7 @@
                                   IsSizeUnitSelectionVisible="True" />
                 <Separator Margin="10,5,10,0" Height="1" />
                 <DockPanel>
-                    <Label ui:Translator.Key="ANCHOR_POINT" Foreground="White" Margin="25,5,0,0"
+                    <Label ui:Translator.Key="ANCHOR_POINT" Foreground="{DynamicResource TextForegroundBrush}" Margin="25,5,0,0"
                            HorizontalAlignment="Left"
                            FontSize="12" />
                     <input:AnchorPointPicker

@@ -10,7 +10,7 @@
              xmlns:commandSearch="clr-namespace:PixiEditor.Views.Main.CommandSearch"
              xmlns:behaviors="clr-namespace:PixiEditor.UI.Common.Behaviors;assembly=PixiEditor.UI.Common"
              mc:Ignorable="d"
-             Foreground="White"
+             Foreground="{DynamicResource TextForegroundBrush}"
              d:DesignHeight="450" d:DesignWidth="600"
              x:Name="uc">
     <Grid Background="Transparent" Tapped="InputElement_OnTapped">

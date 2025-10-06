@@ -11,8 +11,7 @@
         "dependencies": {
           "Microsoft.Build.Utilities.Core": "17.12.6",
           "Mono.Cecil": "0.11.6",
-          "NETStandard.Library": "2.0.3",
-          "StyleCop.Analyzers": "1.1.118"
+          "NETStandard.Library": "2.0.3"
         },
         "runtime": {
           "PixiEditor.Api.CGlueMSBuild.dll": {}
@@ -79,7 +78,6 @@
           "Microsoft.NETCore.Platforms": "1.1.0"
         }
       },
-      "StyleCop.Analyzers/1.1.118": {},
       "System.Buffers/4.5.1": {},
       "System.Collections.Immutable/8.0.0": {
         "dependencies": {
@@ -174,13 +172,6 @@
       "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
-    },
-    "StyleCop.Analyzers/1.1.118": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw==",
-      "path": "stylecop.analyzers/1.1.118",
-      "hashPath": "stylecop.analyzers.1.1.118.nupkg.sha512"
     },
     "System.Buffers/4.5.1": {
       "type": "package",

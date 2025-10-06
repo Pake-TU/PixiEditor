@@ -20,7 +20,7 @@
 
         <TextBlock
             Grid.Row="1" Text="{Binding Body, ElementName=popup}" TextAlignment="Center"
-            VerticalAlignment="Center" FontSize="15" Foreground="White" Margin="20,0" d:Text="The file does not exist"
+            VerticalAlignment="Center" FontSize="15" Foreground="{DynamicResource TextForegroundBrush}" Margin="20,0" d:Text="The file does not exist"
             TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis" />
     </DockPanel>
 </dialogs:PixiEditorPopup>

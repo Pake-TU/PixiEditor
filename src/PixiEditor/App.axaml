@@ -6,7 +6,7 @@
              xmlns:templates1="clr-namespace:ColorPicker.AvaloniaUI.Templates;assembly=ColorPicker.AvaloniaUI"
              x:Class="PixiEditor.App"
              Name="PixiEditor"
-             RequestedThemeVariant="Dark">
+             RequestedThemeVariant="{Binding ThemeVariant}">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
     <Application.DataTemplates>
         <avaloniaUi:ViewLocator />
@@ -18,13 +18,13 @@
         <StyleInclude Source="/Styles/PixiEditor.Controls.axaml" />
         <StyleInclude Source="/Styles/PixiEditor.Animators.axaml" />
         <StyleInclude Source="/Styles/PixiEditor.Handles.axaml" />
-        <StyleInclude Source="/Styles/PixiEditor.Layers.axaml" />
         <StyleInclude Source="/Styles/PixiEditorPopupTemplate.axaml" />
         <StyleInclude Source="/Styles/Buttons/CaptionButtonsStyle.axaml" />
     </Application.Styles>
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Styles/PixiEditor.Layers.axaml" />
                 <ResourceInclude Source="/Styles/Templates/ListSwitchButton.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

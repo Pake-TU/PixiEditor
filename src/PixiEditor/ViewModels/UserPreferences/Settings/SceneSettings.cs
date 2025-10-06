@@ -1,5 +1,7 @@
-﻿using System.Windows.Input;
+﻿using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using Avalonia.Media;
+using Avalonia.Styling;
 using CommunityToolkit.Mvvm.Input;
 using Drawie.Numerics;
 using PixiEditor.Extensions.CommonApi.UserPreferences;
@@ -65,6 +67,14 @@ internal class SceneSettings : SettingsGroup
 
     public ICommand ResetBackgroundCommand { get; }
 
+    private string requestedTheme = GetPreference(PreferencesConstants.RequestedTheme, PreferencesConstants.RequestedThemeDefault);
+
+    public string RequestedTheme
+    {
+        get => requestedTheme;
+        set => RaiseAndUpdatePreference(PixiEditorSettings.Scene.RequestedTheme, value);
+    }
+
     public SceneSettings()
     {
         ResetBackgroundCommand = new RelayCommand(() =>
@@ -72,7 +82,8 @@ internal class SceneSettings : SettingsGroup
             PrimaryBackgroundColorHex = PreferencesConstants.PrimaryBackgroundColorDefault;
             SecondaryBackgroundColorHex = PreferencesConstants.SecondaryBackgroundColorDefault;
         });
-        
+
+        SubscribeSettingsValueChanged(PixiEditorSettings.Scene.RequestedTheme, nameof(RequestedTheme));
         SubscribeValueChanged(PixiEditorSettings.Tools.SelectionTintingEnabled, nameof(SelectionTintingEnabled));
     }
 }
